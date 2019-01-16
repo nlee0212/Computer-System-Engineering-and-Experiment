@@ -1,0 +1,19 @@
+if [ $# -eq 0  ]
+then
+	echo "Usage:phone searchfor[... searchfor]"
+	echo "(You didn't tell me what you want to search for.]"
+else
+	count=0;
+	for i in $@
+	do
+		if [ $count -eq 0 ]
+		then
+			count=1;
+		else
+			str1+='|';	
+		fi
+		str1+=$i;
+	done
+	echo $str1;
+	egrep "($str1)" mydata | awk -f display.awk
+fi

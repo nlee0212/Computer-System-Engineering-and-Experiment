@@ -1,0 +1,19 @@
+if [ $# != 0 ]
+then
+  string=""
+  for arg in $*
+  do
+    if [ -z "$string" ]
+    then
+      string="($arg"
+    else
+      string="$string|$arg"
+    fi
+     done
+  string="$string)"
+  egrep "$string" mydata | awk -f display.awk 
+
+else
+  echo "Usage: phone searchfor [...searchfor]
+(You didn't tell me what you want to search for.]"
+fi

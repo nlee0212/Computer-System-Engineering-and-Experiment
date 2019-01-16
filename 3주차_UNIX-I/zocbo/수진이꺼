@@ -1,0 +1,17 @@
+if [ $# -ne 0 ]
+then
+	str=""
+	for sch in $@
+	do
+		if [ -n "$str" ]
+		then
+			str="$str|$sch"
+		else
+			str="$sch"
+		fi	
+	done
+	egrep -i "$str" mydata | awk -f display.awk
+else
+	echo "Usage : phone searchfor[...searechfor]"
+	echo "(You didn't tell me what you want to search for.)"
+fi

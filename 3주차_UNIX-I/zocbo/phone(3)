@@ -1,0 +1,17 @@
+if [ $# -le 0 ]							
+then
+	echo "Usage : phone searchfor [...searchfor]"			
+	echo "(You didn't tell me what you want to search for.)"
+else
+string=""
+for dir in $@				
+do
+	if [ -n "$string" ]
+	then
+		string="$string|$dir"
+	else 
+		string="$dir"
+	fi
+done
+egrep -i "($string)" mydata | awk -f display.awk
+fi
